@@ -6,5 +6,6 @@ Smsgetway::Application.routes.draw do
   scope module: 'web' do
     resources :sessions
     resources :sms
+    resources :users
   end
 end
