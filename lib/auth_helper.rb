@@ -1,4 +1,8 @@
 module AuthHelper
+  def sign_in(user)
+    session[:user_id] = user.id
+  end
+
   def sign_out
     session[:user_id] = nil
   end
@@ -14,6 +18,12 @@ module AuthHelper
   def authenticate_admin!
     unless current_user.admin?
       redirect_to new_session_path
+    end
+  end
+
+  def authenticate_user!
+    unless signed_in?
+      redirect_to new_session_path(from: request.url)
     end
   end
 
